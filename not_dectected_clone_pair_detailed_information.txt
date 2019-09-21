@@ -1,0 +1,304 @@
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+0--->6244936,7460369<---Id In BigCloneBench
+0--->508645,463585<---Line In MyCorpus. Map
+clone Type:2b
+function path
+function 1 path:E:\bcb_reduced\4\selected\183804.java,selected_183804.java,744,778,encodeFileToFile
+
+function 2 path:E:\bcb_reduced\4\selected\1494993.java,selected_1494993.java,829,863,encodeFileToFile
+-------------
+-->the first function source code
+--------------
+    /**
+     * Reads <tt>infile</tt> and encodes it to <tt>outfile</tt>.
+     *
+     * @param infile Input file
+     * @param outfile Output file
+     * @return true if the operation is successful
+     * @since 2.2
+     */
+    public static boolean encodeFileToFile(String infile, String outfile) {
+        boolean success = false;
+        java.io.InputStream in = null;
+        java.io.OutputStream out = null;
+        try {
+            in = new Base64.InputStream(new java.io.BufferedInputStream(new java.io.FileInputStream(infile)), Base64.ENCODE);
+            out = new java.io.BufferedOutputStream(new java.io.FileOutputStream(outfile));
+            byte[] buffer = new byte[65536];
+            int read = -1;
+            while ((read = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, read);
+            }
+            success = true;
+        } catch (java.io.IOException exc) {
+            exc.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (Exception exc) {
+            }
+            try {
+                out.close();
+            } catch (Exception exc) {
+            }
+        }
+        return success;
+    }
+-------------
+-->the second function source code
+--------------
+    /**
+     * Reads <tt>infile</tt> and encodes it to <tt>outfile</tt>.
+     *
+     * @param infile Input file
+     * @param outfile Output file
+     * @return true if the operation is successful
+     * @since 2.2
+     */
+    public static boolean encodeFileToFile(String infile, String outfile) {
+        boolean success = false;
+        java.io.InputStream in = null;
+        java.io.OutputStream out = null;
+        try {
+            in = new Base64.B64InputStream(new java.io.BufferedInputStream(new java.io.FileInputStream(infile)), Base64.ENCODE);
+            out = new java.io.BufferedOutputStream(new java.io.FileOutputStream(outfile));
+            byte[] buffer = new byte[65536];
+            int read = -1;
+            while ((read = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, read);
+            }
+            success = true;
+        } catch (java.io.IOException exc) {
+            exc.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (Exception exc) {
+            }
+            try {
+                out.close();
+            } catch (Exception exc) {
+            }
+        }
+        return success;
+    }
+**********
+-->the first function sentence processed by me
+**********
+public static boolean encodeFileToFile String infile String outfile boolean success false java io InputStream in null java io OutputStream out null in Base64 InputStream java io BufferedInputStream java io FileInputStream infile Base64 ENCODE out java io BufferedOutputStream java io FileOutputStream outfile byte <punctuation> buffer byte <punctuation> <INT> int read <INT> read in read buffer <INT> out write buffer <INT> read success true java io IOException exc exc printStackTrace in close Exception exc out close Exception exc success
+**********
+-->the second function sentence processed by me
+**********
+public static boolean encodeFileToFile String infile String outfile boolean success false java io InputStream in null java io OutputStream out null in Base64 B64InputStream java io BufferedInputStream java io FileInputStream infile Base64 ENCODE out java io BufferedOutputStream java io FileOutputStream outfile byte <punctuation> buffer byte <punctuation> <INT> int read <INT> read in read buffer <INT> out write buffer <INT> read success true java io IOException exc exc printStackTrace in close Exception exc out close Exception exc success
+@@@@@@@@@@@@
+-->the distance of the two functions processed by me
+@@@@@@@@@@
+PVT
+0.015471971
+traditional_RAE
+0.00044571454
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+1--->3062180,3113947<---Id In BigCloneBench
+1--->374835,373105<---Line In MyCorpus. Map
+clone Type:2c
+function path
+function 1 path:E:\bcb_reduced\39\selected\840639.java,selected_840639.java,50,57,recursiveDelete
+
+function 2 path:E:\bcb_reduced\39\selected\2092.java,selected_2092.java,13,25,recursiveDelete
+-------------
+-->the first function source code
+--------------
+    public static void recursiveDelete(File transmissionFolder) {
+        if (transmissionFolder.isDirectory()) {
+            for (File file : transmissionFolder.listFiles()) {
+                recursiveDelete(file);
+            }
+        }
+        transmissionFolder.delete();
+    }
+-------------
+-->the second function source code
+--------------
+    /**
+	 * Operates a recursive delete on a folder.
+	 * 
+	 * @param dir
+	 */
+    public static void recursiveDelete(File dir) {
+        if (dir.isDirectory()) {
+            for (File subfiles : dir.listFiles()) {
+                recursiveDelete(subfiles);
+            }
+        }
+        dir.delete();
+    }
+**********
+-->the first function sentence processed by me
+**********
+public static void recursiveDelete File transmissionFolder transmissionFolder isDirectory File file transmissionFolder listFiles recursiveDelete file transmissionFolder delete
+**********
+-->the second function sentence processed by me
+**********
+public static void recursiveDelete File dir dir isDirectory File subfiles dir listFiles recursiveDelete subfiles dir delete
+@@@@@@@@@@@@
+-->the distance of the two functions processed by me
+@@@@@@@@@@
+PVT
+0.45679423
+traditional_RAE
+0.10973083
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+2--->5297820,10131427<---Id In BigCloneBench
+2--->542915,448516<---Line In MyCorpus. Map
+clone Type:2b
+function path
+function 1 path:E:\bcb_reduced\4\selected\208660.java,selected_208660.java,76,82,copyFile
+
+function 2 path:E:\bcb_reduced\4\selected\1385816.java,selected_1385816.java,39,55,copyFile
+-------------
+-->the first function source code
+--------------
+    public static void copyFile(File src, File dst) throws IOException {
+        FileChannel from = new FileInputStream(src).getChannel();
+        FileChannel to = new FileOutputStream(dst).getChannel();
+        from.transferTo(0, src.length(), to);
+        from.close();
+        to.close();
+    }
+-------------
+-->the second function source code
+--------------
+    /**
+	 * Copy a file.
+	 * 
+	 * @param in
+	 *            The source file.
+	 * @param out
+	 *            The target location.
+	 * @throws IOException
+	 *             If an I/O error occur.
+	 */
+    public static void copyFile(File in, File out) throws IOException {
+        FileChannel sourceChannel = new FileInputStream(in).getChannel();
+        FileChannel destinationChannel = new FileOutputStream(out).getChannel();
+        sourceChannel.transferTo(0, sourceChannel.size(), destinationChannel);
+        sourceChannel.close();
+        destinationChannel.close();
+    }
+**********
+-->the first function sentence processed by me
+**********
+public static void copyFile File src File dst IOException FileChannel from FileInputStream src getChannel FileChannel to FileOutputStream dst getChannel from transferTo <INT> src length to from close to close
+**********
+-->the second function sentence processed by me
+**********
+public static void copyFile File in File out IOException FileChannel sourceChannel FileInputStream in getChannel FileChannel destinationChannel FileOutputStream out getChannel sourceChannel transferTo <INT> sourceChannel size destinationChannel sourceChannel close destinationChannel close
+@@@@@@@@@@@@
+-->the distance of the two functions processed by me
+@@@@@@@@@@
+PVT
+0.6238803
+traditional_RAE
+0.12817973
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+3--->2575374,6527977<---Id In BigCloneBench
+3--->564971,265240<---Line In MyCorpus. Map
+clone Type:2c
+function path
+function 1 path:E:\bcb_reduced\4\selected\2256300.java,selected_2256300.java,15,21,copy
+
+function 2 path:E:\bcb_reduced\3\selected\1152093.java,selected_1152093.java,49,61,copy
+-------------
+-->the first function source code
+--------------
+    public static void copy(File in, File out) throws Exception {
+        FileChannel sourceChannel = new FileInputStream(in).getChannel();
+        FileChannel destinationChannel = new FileOutputStream(out).getChannel();
+        sourceChannel.transferTo(0, sourceChannel.size(), destinationChannel);
+        sourceChannel.close();
+        destinationChannel.close();
+    }
+-------------
+-->the second function source code
+--------------
+    /**
+	 * Copy a file on the disk. all data in the destination file will be overwritten.
+	 * @param in from this file
+	 * @param out to this new file
+	 * @throws IOException
+	 */
+    public static void copy(File in, File out) throws IOException {
+        FileChannel ic = new FileInputStream(in).getChannel();
+        FileChannel oc = new FileOutputStream(out).getChannel();
+        ic.transferTo(0, ic.size(), oc);
+        ic.close();
+        oc.close();
+    }
+**********
+-->the first function sentence processed by me
+**********
+public static void copy File in File out Exception FileChannel sourceChannel FileInputStream in getChannel FileChannel destinationChannel FileOutputStream out getChannel sourceChannel transferTo <INT> sourceChannel size destinationChannel sourceChannel close destinationChannel close
+**********
+-->the second function sentence processed by me
+**********
+public static void copy File in File out IOException FileChannel ic FileInputStream in getChannel FileChannel oc FileOutputStream out getChannel ic transferTo <INT> ic size oc ic close oc close
+@@@@@@@@@@@@
+-->the distance of the two functions processed by me
+@@@@@@@@@@
+PVT
+0.6517104
+traditional_RAE
+0.068753116
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+4--->1490117,18613870<---Id In BigCloneBench
+4--->702101,113271<---Line In MyCorpus. Map
+clone Type:2c
+function path
+function 1 path:E:\bcb_reduced\4\selected\812847.java,selected_812847.java,8,14,copy
+
+function 2 path:E:\bcb_reduced\2\selected\1408573.java,selected_1408573.java,251,257,copyFile
+-------------
+-->the first function source code
+--------------
+    private static void copy(File source, File target) throws IOException {
+        FileChannel sourceChannel = new FileInputStream(source).getChannel();
+        FileChannel targetChannel = new FileOutputStream(target).getChannel();
+        sourceChannel.transferTo(0, sourceChannel.size(), targetChannel);
+        sourceChannel.close();
+        targetChannel.close();
+    }
+-------------
+-->the second function source code
+--------------
+    private static void copyFile(File src, File dst) throws IOException {
+        FileChannel in = new FileInputStream(src).getChannel();
+        FileChannel out = new FileOutputStream(dst).getChannel();
+        in.transferTo(0, in.size(), out);
+        in.close();
+        out.close();
+    }
+**********
+-->the first function sentence processed by me
+**********
+private static void copy File source File target IOException FileChannel sourceChannel FileInputStream source getChannel FileChannel targetChannel FileOutputStream target getChannel sourceChannel transferTo <INT> sourceChannel size targetChannel sourceChannel close targetChannel close
+**********
+-->the second function sentence processed by me
+**********
+private static void copyFile File src File dst IOException FileChannel in FileInputStream src getChannel FileChannel out FileOutputStream dst getChannel in transferTo <INT> in size out in close out close
+@@@@@@@@@@@@
+-->the distance of the two functions processed by me
+@@@@@@@@@@
+PVT
+0.54668814
+traditional_RAE
+0.12960619
